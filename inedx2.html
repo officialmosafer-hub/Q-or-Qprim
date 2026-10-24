@@ -1,0 +1,572 @@
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f7faff">
+<title>آزمایشگاه اعداد گویا و گنگ | آکادمی پرش</title>
+<style>
+:root{
+  --blue:#377cf6;--green:#10ad83;--purple:#8956e8;
+  --orange:#f2a52b;--ink:#1d3458;--muted:#71829c;
+  --line:#e0e9f5;--bg:#f7faff;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:linear-gradient(140deg,#f8fbff,#f2f7ff,#fffaf4);
+  color:var(--ink);font-family:Tahoma,Arial,sans-serif;line-height:1.9
+}
+button,input{font:inherit}
+button{cursor:pointer}
+header{
+  display:flex;justify-content:space-between;align-items:center;gap:12px;
+  padding:13px 5%;background:#ffffffed;border-bottom:1px solid var(--line)
+}
+.brand{display:flex;align-items:center;gap:10px}
+.logo{font-size:30px;background:#e7f1ff;border-radius:14px;padding:3px 10px}
+header h1{font-size:17px;margin:0}
+small,.muted{color:var(--muted);font-size:12px}
+.container{max-width:1120px;margin:auto;padding:18px}
+.hero{
+  display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:center;
+  background:linear-gradient(120deg,#eaf4ff,#fff,#f4edff);
+  border:1px solid #dce8fa;border-radius:24px;padding:24px
+}
+.hero h2{font-size:clamp(25px,4vw,38px);line-height:1.6;margin:7px 0}
+.gradient{background:linear-gradient(90deg,#2878f0,#9b54ed);
+  color:transparent;background-clip:text}
+.hero p{color:#607795}
+.art{
+  min-height:190px;display:grid;place-items:center;position:relative;
+  border-radius:22px;background:radial-gradient(circle,#d8efff,#f0f7ff 68%,transparent 70%)
+}
+.flask{font-size:83px}
+.bubble{position:absolute;border-radius:50%;display:grid;place-items:center;
+  font-size:22px;font-weight:bold;box-shadow:0 5px 15px #5579a322}
+.b1{top:12px;right:15px;background:#ffe4a7;width:53px;height:53px}
+.b2{bottom:12px;left:12px;background:#e9dcff;width:64px;height:64px}
+.b3{top:18px;left:20px;background:#c9f6e5;width:45px;height:45px}
+.badge{display:inline-block;background:#e2edff;color:#2868c9;
+  border-radius:25px;padding:4px 12px;font-size:12px}
+.btn{border:0;border-radius:11px;padding:9px 15px;background:var(--blue);
+  color:white;font-weight:bold}
+.green-btn{background:var(--green)}
+.purple-btn{background:var(--purple)}
+.orange-btn{background:var(--orange)}
+.light-btn{background:#eaf2ff;color:#245da5}
+.section-title{font-size:21px;margin:25px 0 10px}
+.features{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.feature,.panel{background:#ffffffed;border:1px solid var(--line);
+  border-radius:18px;padding:17px}
+.feature{text-align:center}
+.feature .icon{font-size:30px}
+.feature h3{font-size:15px;margin:3px 0}
+.feature p{font-size:12px;color:var(--muted);min-height:43px}
+.blue{background:#edf4ff}
+.green{background:#eafbf4}
+.purple{background:#f3edff}
+.orange{background:#fff5e1}
+.content{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+.panel h3{margin-top:0}
+.rule{padding:12px;border-radius:12px;margin:9px 0;font-size:13px}
+.rule b{display:block;font-size:15px}
+.rule.r{background:#eafbf4;border:1px solid #c7f0dd}
+.rule.i{background:#f3edff;border:1px solid #dfd1ff}
+.inputrow{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+input{
+  min-width:0;flex:1;width:100%;padding:10px 12px;border-radius:10px;
+  border:1px solid #ceddf0;background:#fbfdff;color:var(--ink)
+}
+.result{
+  margin-top:12px;padding:12px;background:#f6faff;
+  border:1px solid #dce8f8;border-radius:12px;font-size:13px;
+  overflow-wrap:anywhere
+}
+.tag{display:inline-block;padding:2px 10px;border-radius:20px;
+  font-size:12px;font-weight:bold;margin-left:5px}
+.tag.r{background:#d8f7e8;color:#08764e}
+.tag.i{background:#eee2ff;color:#7440c7}
+.tag.e{background:#ffe3e1;color:#a33b34}
+.examples{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
+.ex{background:#f2f7ff;border:1px solid #d7e6f9;color:#315c93;
+  border-radius:9px;padding:6px 10px;font-size:12px}
+.question{
+  text-align:center;font-size:32px;font-weight:bold;direction:ltr;
+  padding:10px;background:#f5f9ff;border:1px solid #dce9f9;
+  border-radius:13px;margin:10px 0
+}
+.answers{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.answer{border:0;border-radius:10px;color:white;padding:10px;font-weight:bold}
+.axis{
+  position:relative;height:110px;margin:18px 8px 4px;
+  direction:ltr
+}
+.axisline{position:absolute;left:0;right:0;top:42px;height:3px;background:#9bb2d0}
+.tick{position:absolute;top:34px;width:2px;height:20px;background:#829dbf}
+.tick span{position:absolute;top:20px;left:0;transform:translateX(-50%);font-size:11px}
+.point{position:absolute;top:26px;transform:translateX(-50%);
+  width:15px;height:15px;background:var(--orange);border:3px solid white;
+  border-radius:50%;box-shadow:0 0 0 2px var(--orange)}
+.pointlabel{position:absolute;top:-5px;transform:translateX(-50%);
+  font-size:11px;color:#a86b00;white-space:nowrap;direction:ltr}
+.axis-hint{text-align:center;color:var(--muted);font-size:11px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.stat{background:#f6faff;border:1px solid var(--line);border-radius:12px;
+  text-align:center;padding:10px}
+.stat b{display:block;font-size:22px;color:var(--blue)}
+footer{text-align:center;padding:25px 10px;color:#718bb0;font-size:12px}
+section{scroll-margin-top:15px}
+@media(max-width:760px){
+  .features{grid-template-columns:repeat(2,1fr)}
+  .hero,.content{grid-template-columns:1fr}
+  .art{min-height:145px}
+}
+@media(max-width:430px){
+  header{padding:10px}
+  header h1{font-size:14px}
+  .container{padding:10px}
+  .hero{padding:15px}
+  .feature,.panel{padding:12px}
+  .question{font-size:27px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <div class="logo">🧪</div>
+    <div>
+      <h1>آزمایشگاه مجازی ریاضی</h1>
+      <small>تجربه کن، کشف کن، یاد بگیر</small>
+    </div>
+  </div>
+  <div><b>🎓 پایه نهم</b><br><small>آکادمی پرش</small></div>
+</header>
+
+<main class="container">
+<section class="hero" id="home">
+  <div class="art">
+    <span class="flask">⚗️</span>
+    <span class="bubble b1">π</span>
+    <span class="bubble b2">√2</span>
+    <span class="bubble b3">ℚ</span>
+  </div>
+  <div>
+    <span class="badge">یک تجربهٔ علمی و تعاملی</span>
+    <h2>راز اعداد را کشف کن!</h2>
+    <h2 class="gradient">گویا یا گنگ؟</h2>
+    <p>عددها را آزمایش کن، ریشه‌ها را روی محور ببین و دانش خودت را به چالش بکش.</p>
+    <button class="btn" onclick="go('lab')">شروع آزمایش ←</button>
+  </div>
+</section>
+
+<h2 class="section-title">بخش‌های آزمایشگاه</h2>
+<div class="features">
+  <article class="feature blue">
+    <div class="icon">🔎</div><h3>تشخیص اعداد</h3>
+    <p>گویا یا گنگ؟ همراه با دلیل.</p>
+    <button class="btn" onclick="go('lab')">شروع</button>
+  </article>
+  <article class="feature green">
+    <div class="icon">↔️</div><h3>محور ریشه‌ها</h3>
+    <p>فقط عدد را وارد کن و جای ریشه را ببین.</p>
+    <button class="btn green-btn" onclick="go('axis')">مشاهده</button>
+  </article>
+  <article class="feature purple">
+    <div class="icon">¾</div><h3>کسرساز</h3>
+    <p>کسرها را ساده و بررسی کن.</p>
+    <button class="btn purple-btn" onclick="go('fraction')">آزمایش</button>
+  </article>
+  <article class="feature orange">
+    <div class="icon">🏆</div><h3>چالش نهایی</h3>
+    <p>دانشت را با آزمون بسنج.</p>
+    <button class="btn orange-btn" onclick="go('quiz')">شروع</button>
+  </article>
+</div>
+
+<div class="content">
+<section class="panel">
+  <h3>💡 اعداد گویا و گنگ</h3>
+  <div class="rule r">
+    <b>اعداد گویا</b>
+    عددهایی که می‌توان آن‌ها را به صورت کسر دو عدد صحیح با مخرج ناصفر نوشت.
+    <br>مثال: ۳/۵، ۰، ۲، ۰٫۲۵ و ۰٫۳۳۳…
+  </div>
+  <div class="rule i">
+    <b>اعداد گنگ</b>
+    عددهایی که نمی‌توان آن‌ها را به شکل کسر دو عدد صحیح نوشت.
+    <br>مثال: √۲، √۳ و π
+  </div>
+  <p class="muted">یادت باشد: هر ریشه‌ای گنگ نیست؛ √۹ = ۳ و عدد ۳ گویاست.</p>
+</section>
+
+<section class="panel">
+  <h3>🧑‍🔬 آزمایش نمونه</h3>
+  <p class="muted">√۲ گویاست یا گنگ؟</p>
+  <div class="question">√2</div>
+  <div class="answers">
+    <button class="answer" style="background:var(--green)" onclick="sampleAnswer('r')">گویا</button>
+    <button class="answer" style="background:var(--purple)" onclick="sampleAnswer('i')">گنگ</button>
+  </div>
+  <div id="sampleResult" class="result">پاسخت را انتخاب کن.</div>
+</section>
+</div>
+
+<section class="panel" id="lab" style="margin-top:15px">
+  <h3>🔬 آزمایش تشخیص اعداد</h3>
+  <p class="muted">عدد یا عبارت را وارد کن؛ مثل 3/5، 0.25، √2 یا pi.</p>
+  <div class="inputrow">
+    <input id="numberInput" placeholder="مثلاً √2 یا 3/5" aria-label="عدد">
+    <button class="btn" onclick="classify()">تحلیل عدد</button>
+  </div>
+  <div class="examples">
+    <button class="ex" onclick="fillNumber('3/5')">۳/۵</button>
+    <button class="ex" onclick="fillNumber('0.25')">۰٫۲۵</button>
+    <button class="ex" onclick="fillNumber('sqrt(49)')">√۴۹</button>
+    <button class="ex" onclick="fillNumber('sqrt(11)')">√۱۱</button>
+    <button class="ex" onclick="fillNumber('pi')">π</button>
+  </div>
+  <div class="result" id="classResult">یک عدد وارد کن تا بررسی شود.</div>
+</section>
+
+<section class="panel" id="axis" style="margin-top:15px">
+  <h3>📍 نمایش ریشه روی محور اعداد</h3>
+  <p class="muted">
+    فقط عدد زیر رادیکال را وارد کن؛ نیازی به نوشتن علامت ریشه نیست.
+    مثلاً با وارد کردن ۲، عدد √۲ روی محور نمایش داده می‌شود.
+  </p>
+  <div class="inputrow">
+    <input id="axisInput" type="number" min="0" max="1000000"
+      step="any" value="2" placeholder="فقط عدد زیر رادیکال">
+    <button class="btn green-btn" onclick="drawRoot()">نمایش روی محور</button>
+  </div>
+  <div class="examples">
+    <button class="ex" onclick="setRoot(2)">√۲</button>
+    <button class="ex" onclick="setRoot(3)">√۳</button>
+    <button class="ex" onclick="setRoot(5)">√۵</button>
+    <button class="ex" onclick="setRoot(9)">√۹</button>
+    <button class="ex" onclick="setRoot(16)">√۱۶</button>
+  </div>
+  <div class="axis" id="axisBox">
+    <div class="axisline"></div>
+    <div id="ticks"></div>
+    <div id="point"></div>
+  </div>
+  <div class="axis-hint">محور اعداد از ۳− تا ۳</div>
+  <div class="result" id="axisResult">عدد ۲ را امتحان کن.</div>
+</section>
+
+<div class="content">
+<section class="panel" id="fraction">
+  <h3>🧮 کسرساز و ساده‌ساز</h3>
+  <div class="inputrow">
+    <input id="numerator" type="number" value="18" placeholder="صورت">
+    <input id="denominator" type="number" value="24" placeholder="مخرج">
+  </div>
+  <button class="btn purple-btn" onclick="simplifyFraction()">ساده کن</button>
+  <div id="fractionResult" class="result">کسر ۱۸/۲۴ را بررسی کن.</div>
+</section>
+
+<section class="panel" id="rootLab">
+  <h3>√ آزمایشگاه ریشه‌ها</h3>
+  <p class="muted">فقط عدد زیر رادیکال را وارد کن.</p>
+  <div class="inputrow">
+    <input id="radicand" type="number" min="0" step="1" value="2">
+    <button class="btn" onclick="testRoot()">آزمایش کن</button>
+  </div>
+  <div class="question" id="rootDisplay">√۲ ≈ 1.414214</div>
+  <div id="rootResult" class="result"></div>
+</section>
+</div>
+
+<section class="panel" id="quiz" style="margin-top:15px">
+  <h3>🏆 چالش نهایی؛ ۱۰ سؤال</h3>
+  <div style="display:flex;justify-content:space-between;gap:10px">
+    <span id="quizCount" class="muted">برای شروع آماده‌ای؟</span>
+    <b id="score">امتیاز: ۰</b>
+  </div>
+  <div style="height:7px;background:#e5edf8;border-radius:20px;overflow:hidden;margin:8px 0">
+    <div id="progress" style="height:100%;width:0;background:var(--green)"></div>
+  </div>
+  <div class="question" id="quizNumber">آماده‌ای؟</div>
+  <p id="quizPrompt" style="text-align:center">آزمون را شروع کن.</p>
+  <div class="answers">
+    <button class="answer" style="background:var(--green)" onclick="answerQuiz('r')">گویا است</button>
+    <button class="answer" style="background:var(--purple)" onclick="answerQuiz('i')">گنگ است</button>
+  </div>
+  <div id="quizFeedback" class="result">پاسخ‌های درست برایت امتیاز دارند.</div>
+  <div class="inputrow">
+    <button class="btn" onclick="startQuiz()">شروع / شروع دوباره</button>
+    <button id="nextButton" class="btn light-btn" onclick="nextQuiz()" disabled>سؤال بعدی ←</button>
+  </div>
+  <div class="stats">
+    <div class="stat"><b id="answered">۰</b><small>پاسخ داده‌شده</small></div>
+    <div class="stat"><b id="correct">۰</b><small>پاسخ درست</small></div>
+    <div class="stat"><b id="accuracy">۰٪</b><small>دقت</small></div>
+  </div>
+</section>
+
+<footer>
+  آزمایشگاه مجازی ریاضی · پایه نهم<br>
+  فکر کن ✦ آزمایش کن ✦ یاد بگیر<br>
+  <b>طراح: ابراهیم حیدرزاده</b><br>
+  ملکان، آذربایجان شرقی · آکادمی پرش
+</footer>
+</main>
+
+<script>
+const $ = id => document.getElementById(id);
+
+function go(id){
+  $(id).scrollIntoView({behavior:"smooth",block:"start"});
+}
+function gcd(a,b){
+  a=Math.abs(a);b=Math.abs(b);
+  while(b){const t=b;b=a%b;a=t;}
+  return a||1;
+}
+function fmt(n){
+  return Number.isFinite(n)?String(Number(n.toFixed(8))):"تعریف‌نشده";
+}
+
+function parseNumber(raw){
+  let s=String(raw??"").trim().toLowerCase()
+    .replace(/π/g,"pi").replace(/√/g,"sqrt")
+    .replace(/[−–]/g,"-").replace(/\s/g,"");
+
+  if(!s)return {error:"لطفاً یک عدد وارد کن."};
+
+  if(s==="pi")
+    return {v:Math.PI,t:"i",name:"π",
+      why:"عدد π گنگ است؛ نمایش اعشاری آن نامتناهی و غیر‌دوره‌ای است."};
+
+  let m=s.match(/^sqrt(?:\(([-+]?\d+(?:\.\d+)?)\)|([-+]?\d+(?:\.\d+)?))$/);
+  if(m){
+    const n=Number(m[1]??m[2]);
+    if(n<0)return {error:"ریشهٔ دوم عدد منفی در مجموعهٔ اعداد حقیقی تعریف نشده است."};
+    const r=Math.sqrt(n),perfect=Number.isInteger(r)&&Number.isInteger(n);
+    return {v:r,t:perfect?"r":"i",name:"√"+n,
+      why:perfect?`√${n} = ${r}؛ پس این عدد گویاست.`
+      :`${n} مربع کامل نیست؛ بنابراین √${n} گنگ است.`};
+  }
+
+  if(/^[-+]?\d+\/[-+]?\d+$/.test(s)){
+    const [a,b]=s.split("/").map(Number);
+    if(b===0)return {error:"مخرج کسر نمی‌تواند صفر باشد."};
+    return {v:a/b,t:"r",name:s,
+      why:"این عدد به شکل کسر دو عدد صحیح با مخرج ناصفر نوشته شده است؛ پس گویاست."};
+  }
+
+  if(/^[-+]?\d+(?:\.\d+)?$/.test(s)){
+    return {v:Number(s),t:"r",name:s,
+      why:s.includes(".")?"این اعشار مختوم است و گویاست."
+      :"هر عدد صحیح را می‌توان به شکل کسر با مخرج ۱ نوشت؛ پس گویاست."};
+  }
+
+  if(/^[-+]?\d*\.\d+\.\.\.$/.test(s)){
+    return {v:NaN,t:"r",name:s,
+      why:"اعشار دوره‌ای گویاست، به شرط آن‌که رقم‌های آن به‌طور منظم تکرار شوند."};
+  }
+
+  return {error:"ورودی پشتیبانی نمی‌شود. نمونه‌ها: 3/7، 0.125، sqrt(2)، pi"};
+}
+
+function showClassification(element,raw){
+  const d=parseNumber(raw);
+  if(d.error){
+    element.innerHTML='<span class="tag e">خطا</span>'+d.error;
+    return d;
+  }
+  element.innerHTML=`<span class="tag ${d.t}">${d.t==="r"?"گویا":"گنگ"}</span>
+  <b>${d.name}</b><br>${d.why}
+  ${Number.isFinite(d.v)?`<br><span class="muted">مقدار تقریبی: ${fmt(d.v)}</span>`:""}`;
+  return d;
+}
+function classify(){
+  showClassification($("classResult"),$("numberInput").value);
+}
+function fillNumber(v){
+  $("numberInput").value=v;
+  classify();
+}
+$("numberInput").addEventListener("keydown",e=>{
+  if(e.key==="Enter")classify();
+});
+
+function sampleAnswer(answer){
+  const correct=answer==="i";
+  $("sampleResult").innerHTML=correct
+    ?"<span class='tag i'>درست!</span> √۲ گنگ است؛ چون ۲ مربع کامل نیست."
+    :"<span class='tag e'>دوباره فکر کن!</span> √۲ گنگ است؛ چون نمی‌توان آن را به صورت کسر دو عدد صحیح نوشت.";
+}
+
+/* محور اعداد: کاربر فقط عدد زیر رادیکال را وارد می‌کند */
+const axisMin=-3,axisMax=3;
+
+function buildTicks(){
+  const ticks=$("ticks");
+  ticks.innerHTML="";
+  for(let i=axisMin;i<=axisMax;i++){
+    const pos=(i-axisMin)/(axisMax-axisMin)*100;
+    const tick=document.createElement("div");
+    tick.className="tick";
+    tick.style.left=pos+"%";
+    const label=document.createElement("span");
+    label.textContent=i;
+    tick.appendChild(label);
+    ticks.appendChild(tick);
+  }
+}
+function setRoot(n){
+  $("axisInput").value=n;
+  drawRoot();
+}
+function drawRoot(){
+  const input=$("axisInput");
+  const raw=input.value.trim();
+  const n=Number(raw);
+  const point=$("point");
+  const result=$("axisResult");
+  point.innerHTML="";
+
+  if(raw===""||!Number.isFinite(n)||n<0){
+    result.textContent="لطفاً یک عدد نامنفی وارد کن.";
+    return;
+  }
+  const root=Math.sqrt(n);
+  if(root<axisMin||root>axisMax){
+    result.textContent="ریشهٔ این عدد خارج از بازهٔ محور (۳− تا ۳) است. برای نمایش روی این محور، عدد زیر رادیکال باید حداکثر ۹ باشد.";
+    return;
+  }
+
+  const perfect=Number.isInteger(root);
+  const pos=(root-axisMin)/(axisMax-axisMin)*100;
+
+  const dot=document.createElement("div");
+  dot.className="point";
+  dot.style.left=pos+"%";
+
+  const label=document.createElement("div");
+  label.className="pointlabel";
+  label.style.left=pos+"%";
+  label.textContent=perfect?String(root):"√"+n;
+
+  point.appendChild(dot);
+  point.appendChild(label);
+
+  result.innerHTML=`<b>عدد واردشده:</b> ${n}
+  <br><b>ریشهٔ دوم:</b> √${n} ${perfect?"= ":"≈ "}${fmt(root)}
+  <br><span class="tag ${perfect?"r":"i"}">${perfect?"گویا":"گنگ"}</span>
+  ${perfect?`چون ${n} مربع کامل است، ریشهٔ آن ${root} است.`
+  :`چون ${n} مربع کامل نیست، √${n} گنگ است.`}
+  <br>نقطهٔ نارنجی جایگاه تقریبی ریشه را روی محور نشان می‌دهد.`;
+}
+$("axisInput").addEventListener("keydown",e=>{
+  if(e.key==="Enter")drawRoot();
+});
+buildTicks();
+drawRoot();
+
+function simplifyFraction(){
+  let a=Number($("numerator").value);
+  let b=Number($("denominator").value);
+  if(!Number.isInteger(a)||!Number.isInteger(b)){
+    $("fractionResult").textContent="صورت و مخرج باید عدد صحیح باشند.";
+    return;
+  }
+  if(b===0){
+    $("fractionResult").textContent="مخرج کسر نمی‌تواند صفر باشد.";
+    return;
+  }
+  const g=gcd(a,b);
+  let n=a/g,d=b/g;
+  if(d<0){n=-n;d=-d;}
+  $("fractionResult").innerHTML=`<b>${a}/${b} = ${n}/${d}</b>
+  <br>صورت و مخرج را بر ${g} تقسیم کردیم.
+  <br>مقدار اعشاری: ${fmt(a/b)}
+  <br><span class="tag r">عدد گویا</span>`;
+}
+
+function testRoot(){
+  const raw=$("radicand").value.trim();
+  const n=Number(raw);
+  if(raw===""||!Number.isInteger(n)||n<0||n>1000000){
+    $("rootResult").textContent="یک عدد صحیح از صفر تا یک میلیون وارد کن.";
+    return;
+  }
+  const r=Math.sqrt(n);
+  const perfect=Number.isInteger(r);
+  $("rootDisplay").textContent=`√${n} ${perfect?"= "+r:"≈ "+r.toFixed(6)}`;
+  $("rootResult").innerHTML=`<span class="tag ${perfect?"r":"i"}">${perfect?"گویا":"گنگ"}</span>
+  ${perfect?`${n} مربع کامل است؛ ریشهٔ آن ${r} است.`
+  :`${n} مربع کامل نیست؛ پس ریشهٔ دوم آن گنگ است.`}`;
+}
+testRoot();
+
+const questions=[
+ ["−۱۲","r","عدد صحیح است و می‌توان آن را به شکل کسر نوشت."],
+ ["√۷","i","۷ مربع کامل نیست."],
+ ["۰٫۴۵","r","اعشار مختوم است و برابر ۹/۲۰ است."],
+ ["π","i","عدد پی گنگ است."],
+ ["√۱۲۱","r","√۱۲۱ = ۱۱."],
+ ["۵/۹","r","کسر دو عدد صحیح با مخرج ناصفر است."],
+ ["√۱۵","i","۱۵ مربع کامل نیست."],
+ ["۰٫۷۷۷…","r","اعشار دوره‌ای گویاست."],
+ ["√۰","r","√۰ = ۰."],
+ ["√۱۹","i","۱۹ مربع کامل نیست."],
+ ["−۲٫۷۵","r","اعشار مختوم است."],
+ ["√۱۴۴","r","√۱۴۴ = ۱۲."]
+];
+let quiz=[],index=0,score=0,answered=0,locked=true;
+
+function updateStats(){
+  $("quizCount").textContent=`سؤال ${Math.min(index+1,10)} از ۱۰`;
+  $("score").textContent="امتیاز: "+score;
+  $("progress").style.width=(answered/10*100)+"%";
+  $("answered").textContent=answered;
+  $("correct").textContent=score;
+  $("accuracy").textContent=(answered?Math.round(score/answered*100):0)+"٪";
+}
+function startQuiz(){
+  quiz=[...questions].sort(()=>Math.random()-.5).slice(0,10);
+  index=0;score=0;answered=0;
+  loadQuiz();
+}
+function loadQuiz(){
+  locked=false;
+  if(index>=10){
+    $("quizNumber").textContent="پایان چالش!";
+    $("quizPrompt").textContent="آزمون تمام شد.";
+    $("quizFeedback").textContent=`نتیجه: ${score} پاسخ درست از ۱۰ سؤال.`;
+    $("nextButton").disabled=true;
+    locked=true;
+    updateStats();
+    return;
+  }
+  $("quizNumber").textContent=quiz[index][0];
+  $("quizPrompt").textContent="این عدد گویاست یا گنگ؟";
+  $("quizFeedback").textContent="یکی از گزینه‌ها را انتخاب کن.";
+  $("nextButton").disabled=true;
+  updateStats();
+}
+function answerQuiz(t){
+  if(locked||!quiz.length||index>=10)return;
+  locked=true;
+  answered++;
+  const q=quiz[index],ok=t===q[1];
+  if(ok)score++;
+  $("quizFeedback").innerHTML=(ok?"آفرین! پاسخ درست است. ":"این بار پاسخ درست نبود. ")+q[2];
+  $("nextButton").disabled=false;
+  updateStats();
+}
+function nextQuiz(){
+  if(!locked)return;
+  index++;
+  loadQuiz();
+}
+</script>
+</body>
+</html>
